@@ -1,0 +1,243 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+    
+    {% csrf_token %}
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    <!--<section class="d-flex justify-content-center align-items-center">-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    <div class="buscadormodal">
+                        
+                        <input 
+                        type="text"
+                        name="buscarusuario"
+                        id="buscarusuario"
+                        value=""
+                        placeholder="Ingrese nombre de usuario"
+                        class="inputmodal"
+                    >
+                    </div>
+                    
+                    
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tamañomodal" id="datosmodal">
+                        
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+
+            <div class="divContenedor">
+                
+                <div class="divIzquierdo">
+                    <span class="border-bottom">
+                        <div class="divIzquierdoDatos"> 
+                            <div class="divIzquierdo-contenerdor-imagen">
+                                <img class="divIzquierdo-profile-image" src="{{ DIR_HOST_S }}/mensajes/media/{{ usuarios.image }}" alt="Profile img">
+                            </div>
+                            
+                            <div  class="divIzquierdoNombre"> 
+                                <legend>  <h3  id="remitente" > {{ usuarios.user_name }} </h3> </legend>
+                            </div>
+                            <div class="divIzquierdoDatosbotones">
+                                <div>
+                                    
+                                        <button data-bs-toggle="modal" 
+                                                data-bs-target="#exampleModal" 
+                                                id="mostrarmodal" 
+                                                class="botonsvg"
+                                                title="Iniciar nueva conversacion" 
+                                                data-toggle="tooltip"
+
+                                        />
+                                            <svg id="botonnuevaconversacion"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16"
+                                                    
+                                                >
+                                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                            </svg>
+                                    
+    
+                                </div>
+                                <div> 
+                                    <form action="{% url 'mensajes:miperfil' %}" method=""> 
+                                        <button class="botonsvg" id="editarperfil" title="Editar mis datos" data-toggle="tooltip"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg>
+                                    </form>
+                                </div>
+                            
+                            </div>
+                            
+    
+                        </div>
+                    </span> 
+                    <span class="border-bottom">
+                        <div class="divIzquierdoBuscador"> 
+                            <input  id="buscador-chat" type="text" placeholder="Busque dentro de sus mensajes...">
+                        </div>
+                    </span>     
+                    
+                    <span class="border-bottom">
+                        <div id="conversaciones" class="conversaciones"></div>
+                    </span>
+                    
+                </div>
+                    
+                
+                <div class="divCentro"  >
+                    
+                        
+                        <div class="centroCebecera" >
+                            
+                            <div class="col-md-12">
+                                <div class="settings-tray">
+                                    <div class="friend-drawer-cabecera no-gutters friend-drawer-cabecera--grey"> 
+                                        <img id="cabecera_foto_perfil" class="profile-image" >
+                                        <div class="text" id="Chatcabecera">
+                                            <h6 id="h6_texto"></h6>
+                                            <p  id="id_conexion" class="text-muted"></p>
+                                        </div>
+                                        <span class="settings-tray--right" id="accesoperfil"> 
+                                            <div class = "contenedor-opcion-cabecera" id="botonresumen">
+                                                
+                                                
+                                                    <svg xmlns="http://www.w3.org/2000/svg" 
+                                                            id="botonresumen"
+                                                        width="16"  height="16" fill="currentColor" class="bi bi-person-fill-exclamation" viewBox="0 0 16 16">
+                                                        <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z"/>
+                                                    </svg>
+                                                
+                                            </div>
+                                        </span>
+                                                
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+    
+                        </div>
+                    
+                    </span>    
+                    
+                    <span class="border-start">
+                        <div class="centroContenedor">
+                            <div id="Chat"  class="Chat"> </div>
+                        </div>
+                    </span> 
+                    
+                    <div class="centroFooter">
+                        
+                        
+                            <input  id="chat-text" type="text" placeholder="Escriba su mensaje...">
+                            
+                            <i class="material-icons" id="cantidadtexto"> 0/200 </i>
+
+                            <div class="footerDerecho">
+                                <svg id="submit" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                                </svg>
+                            </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                
+                
+                <div class="divDerecho">
+                    
+                        <div class="activos" >
+                            
+                            <div class="activoscabecera">
+                                <h3 class="textoaactivo"> Activos</h3>
+                                
+                            </div>
+
+                        </div >
+                        <span class="border-bottom">
+                        <div class="listaconectados" id="conectados">
+
+
+                            
+                        </div>
+
+
+
+
+                        </span>
+                    
+                </div>
+    
+            </div>
+            
+                
+            <div class="contenedorenlaces"> 
+                    <div class="contenedorenlaces-titulo">
+                        <label for="">CONTACTOS </label>
+                        
+                    </div>
+                    
+                    <div class="contenedorenlaces-direcciones">
+                        <li> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                
+                            </svg>
+                            <a href="https://github.com/RafaIbarra" target="_blank"> github.com/RafaIbarra </a>
+                            
+                            
+                        </li>   
+                       
+
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="20" height="20">
+                                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+                            </svg>
+                            <a href="#">blasrafael1986@gmail.com</a>
+                        </li>
+                    </div>
+                    
+                
+            </div>
+            
+            
+    <!--</section>-->
+
+    <script>
+        var options={
+            animation : true,
+            
+        };
+        var element= document.getElementById('editarperfil');
+        var tooltip = new bootstrap.Tooltip(element,opcion); 
+
+        var element2= document.getElementById('mostrarmodal');
+        var tooltip2 = new bootstrap.Tooltip(element2,opcion); 
+
+
+    </script>
+    
+           
+        
+         
+
+ {% endblock %}

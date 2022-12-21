@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+    
+    
+        
+        <link rel="stylesheet" href="{% static 'css/confirmacion.css' %}" >
+        
+            
+        <div class="contenedorautenticacion bg-success p-2 text-dark bg-opacity-10">
+            
+                
+                        
+            <div class="titulo">
+                <p class="parrafotitulo"> Verificacion del usuario {{user_name}} </p>
+            </div>
+            
+            <div>
+                <p> Se ha enviado al correo {{mail}}  </p>
+            </div>
+            
+            
+            <div>
+                <form action="{% url 'mensajes:enviocorreo' user_name %}" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="col-auto">
+                        
+                        <div class="cuadrotexto" id="cuadroboton" name="cuadroboton">
+                            
+                                <input type="text" class="form-control" id="codigovalidacion" name="codigovalidacion" placeholder="Ingrese Codigo Validacion">
+                            
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="botonprocesar">
+                        <button type="submit" class="btn btn-primary">Procesar Codigo Enviado</button>
+                    </div>
+                    
+                </form>
+            </div>
+                        
+            
+           
+            <div class="botonprocesar">
+                <form action="{% url 'mensajes:generarcodigo' user_name %}" method="POST">
+                    {% csrf_token %}
+                
+                    <button type="submit" class="btn btn-danger mb-3">Generar un nuevo Codigo</button>
+                    
+                </form>
+            </div>
+                
+        </div>
+          
+    
+    
+    
+
+{% endblock %}

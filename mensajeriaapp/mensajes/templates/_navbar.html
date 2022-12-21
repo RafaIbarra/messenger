@@ -1,0 +1,66 @@
+{% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/estililonav.css' %}" >
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" > 
+    
+  
+    <div class="container">
+    
+        <div class="contenedorimagennav">
+          <img class="imglogo" src="http://127.0.0.1:8000/mensajes/media/sistema/logo14 s.png" alt="Profile img">
+        </div> 
+         
+      
+      <a class="navbar-brand" href="/"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            
+            
+          {% if user.is_authenticated %}  
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'mensajes:signout' %}" >Logout</a>
+            </li>
+          {% else %}
+              <a href="{% url 'mensajes:home' %}" class="nav-link">Home</a>
+              <li class="nav-item">
+                <a href="{% url 'mensajes:home' %}" class="nav-link">Login</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'mensajes:registro_usuario' %}" class="nav-link">Register</a>
+              </li>
+          {% endif %}
+         
+          
+          {% if user.is_authenticated %}  
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Configuraciones y Privacidad
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Cambio Contrasena</a></li>
+                <li><a class="dropdown-item" href="#">Actualizacion de Datos</a></li>
+                <li><a class="dropdown-item" href="{% url 'mensajes:eliminarperfil' %}">Eliminar Cuenta</a></li>
+              </ul>
+            </li>
+          {% endif %}
+
+          
+
+
+         
+        </ul>
+      </div>
+    </div>
+  </nav>

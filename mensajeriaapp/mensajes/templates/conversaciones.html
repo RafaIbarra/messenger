@@ -1,0 +1,14 @@
+
+{% block content %}
+    <form action="{% url 'mensajes:mismensajes' %}" method="">
+    {% csrf_token %}
+    <fieldset>
+        <legend> <h1>{{ datos }}</h1></legend>
+
+            <input type="submit" value="LIMPIAR HISTORIAL">
+        </fieldset>
+    
+    
+     
+    </form>
+{% endblock %}

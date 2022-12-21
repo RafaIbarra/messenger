@@ -1,0 +1,178 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estiloinicio.css' %}" >
+
+<form action="{% url 'mensajes:miperfil' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+<section class="d-flex justify-content-center align-items-center"> 
+
+    <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-3   p-4"> 
+        <div class="mb-4 d-flex justify-content-start align-items-end">
+            
+            <div class="contenedor">
+                <img  src="{{ DIR_HOST_S }}/mensajes/media/{{ datos_usuario.image }}" alt="Profile img" 
+                id="contenedorfoto"
+                
+                >
+            </div>
+            
+            
+                <div class="contenedorsvg">
+                    <input type="file"  id="inputfoto" name="inputfoto" style="display: none;">
+                    
+                    <svg id="seleccionarfoto" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                        <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                        <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                      </svg>
+
+                </div>
+                
+        </div>
+        <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger"></div>
+        <div class="mb-1">
+            
+                <div class="datospersonales">
+                    <div class="cuadrodatos">
+                        <label for="nombre" class="textotitulo"> <i class="bi bi-person-fill"></i> Nombre</label>
+                        <div class="input-group mb-3">
+                            
+                            <input type="text" 
+                                class="form-control" 
+                                name="nombre" 
+                                id="nombre" 
+                                placeholder= "ej: Gabriel"  
+                                value="{{ datos_usuario.nombre_usuario }} "
+                                required
+                                >
+                            <div class="nombre text-danger "></div>
+                        </div>
+                    </div>
+                    <div class="cuadrodatos">
+                        <label for="apellido" class="textotitulo"> <i class="bi bi-person-bounding-box"></i> Apellido</label>
+                        <div class="input-group mb-3">
+                            
+                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder= "ej: Pacheco"  value="{{ datos_usuario.apellido_usuario }}" required>
+                            <div class="apellido text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex justify-content-between"> 
+                        <div>
+                            <label for="nacimiento"> <i class="bi bi-person-fill"></i> Fecha Nacimiento</label>
+                            <input type="date" class="form-control" name="nacimiento" id="nacimiento" value={{ fechacorta }} required>
+                            <div class="nombre text-danger "></div>
+                        </div>
+                        
+
+                        <div class="sexo">
+                            <div class="mb-4">
+                                <label for="sexo"><i class="bi bi-gender-ambiguous"></i> Sexo: </label>
+                                {% if sexo %}
+                                    <input type="radio" class="form-check-input"  name="sexo" id="sexo" value="masculino" checked > Masculino
+                                    <input type="radio" class="form-check-input" name="sexo" id="sexo" value="femenino" > Femenino
+                                {% else %}
+                                    <input type="radio" class="form-check-input"  name="sexo" id="sexo" value="masculino" > Masculino
+                                    <input type="radio" class="form-check-input" name="sexo" id="sexo" value="femenino" checked > Femenino
+                                {% endif %}
+
+                                <div class="sexo text-danger"></div>
+                            </div>  
+                        </div>
+                        
+
+                        <div class="apellido text-danger"></div>
+                    
+                    </div>
+                </div>
+                <div class="cuadrodatos">
+                    <label for="user" class="textotitulo"> Nombre de Usuario:</label>
+                    <div class="input-group mb-3">
+                        
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <input type="text" class="form-control" name="user" id="user" placeholder="Username" aria-label="Username" 
+                        aria-describedby="basic-addon1" disabled readonly value="{{ nombreusuario }}" 
+                        
+                         >
+                    </div>
+                    
+                </div>
+                    
+                <div class="cuadrodatos">
+                    <label for="correo"><i class="bi bi-envelope-fill"></i> Correo</label>
+                    <div class="input-group mb-3">
+                        
+                        <input type="email" class="form-control" name="correo" id="correo" placeholder= "ej: gpmcheco@mail.com" disabled readonly value={{ datos_usuario.correo }} >
+                        <div class="correo text-danger"></div>
+                    </div>
+                </div>
+                
+               
+                <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger"></div>
+                <div class="mb-2" id="contboton">
+                    
+                    <button id ="botton" class="btn btn-info text-white w-100 mt-0 fw-semibold shadow-sm">
+                        <span>Actualizar datos </span><i id="icono" class="bi bi-cursor-fill "></i>
+                        
+                    </button>
+                    
+                </div> 
+            
+                </button>
+           
+                
+                <a href="{% url 'mensajes:usuario'  datos_usuario.user_name  %} " class="btn btn-info text-white w-100 mt-0 fw-semibold shadow-sm" >Volver a mensajes</a>
+                    
+                
+                
+            
+        </div>
+    </div>
+</section>
+
+</form>
+
+ 
+
+ <script>
+
+    
+    document.querySelector('#nacimiento').onclick = function (e) {
+        
+        let element = document.getElementById('botton');
+        let elementStyle = window.getComputedStyle(element);
+        let elementColor = elementStyle.getPropertyValue('background-color');
+        
+    }
+    
+    document.querySelector('#seleccionarfoto').onclick = function (e) {
+        
+        document.querySelector('#inputfoto').click()
+  
+    }
+
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+    
+                var filePreview = document.getElementById('contenedorfoto');
+                filePreview.src = e.target.result;
+                
+
+        
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    var fileUpload = document.getElementById('inputfoto');
+      fileUpload.onchange = function (e) {
+          readFile(e.srcElement);
+    }
+ </script>
+
+
+
+{% endblock %}

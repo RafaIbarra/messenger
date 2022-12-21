@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" >
+    <title>Mensajeria</title>
+    
+    
+  </head>
+  <body>
+    {% include '_navbar.html' %}
+    
+    {% block content %}
+    
+    
+    {% endblock %}
+  
+    
+    <script type="module" src='{% static "js\cargainicial.js" %}'></script>
+    <script type="module" src='{% static "js\websocket.js" %}'></script>
+    <script type="module" src='{% static "js\modal.js" %}'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js.map"></script> {% endcomment %}
+                
+    <script>
+      
+      
+      document.querySelector('#chat-text').oninput  = function (e) {
+        let palabras = document.getElementById("chat-text").value;
+        let cant = document.getElementById("cantidadtexto");
+        
+        cant.innerHTML=palabras.length.toString() + '/200' ;
+      }
+      
+      document.querySelector('#accesoperfil').onclick = function (e) {
+        
+        let cabecerausuario = document.getElementById("h6_texto").innerText;
+        if(cabecerausuario.length >0){
+          
+          window.location.href = 'http://127.0.0.1:8000/mensajes/resumen/'+cabecerausuario;
+
+        };
+        
+
+    };
+
+
+    </script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %} 
+
+{% block content %}
+    
+
+
+<h1> MI PERFIL</h1>
+
+<legend > <h1> {{ usuarios.user_name }}</h1></legend>
+
+<form action="{% url 'mensajes:miperfil' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <fieldset>
+  
+    <label for="seleccionarfoto">Seleccionar foto:</label>
+    <input type="file"  id="seleccionarfoto" name="seleccionarfoto"> 
+    
+
+
+  </fieldset>
+
+  <div id="file-preview-zone">
+  </div>
+  
+  <input type="submit" value="GUARDAR">
+
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+
+  
+ 
+  <button />
+  <button id="botofotoferil"> seleccionar
+  <input type="file"  id="fotoperfil" name="fotoperfil" style="display: none;">
+</button>
+
+    
+  
+  {% comment %} </form> {% endcomment %}
+  <script>
+    document.querySelector('#botofotoferil').onclick = function (e) {
+      
+      document.querySelector('#fotoperfil').click()
+
+    }
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var filePreview = document.createElement('img');
+                filePreview.id = 'file-preview';
+                //e.target.result contents the base64 data from the image uploaded
+                filePreview.src = e.target.result;
+                
+
+                var previewZone = document.getElementById('file-preview-zone');
+                previewZone.appendChild(filePreview);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    var fileUpload = document.getElementById('fotoperfil');
+    fileUpload.onchange = function (e) {
+        readFile(e.srcElement);
+    }
+  </script>
+
+ 
+
+{% endblock %}

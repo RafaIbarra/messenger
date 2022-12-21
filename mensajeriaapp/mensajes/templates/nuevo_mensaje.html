@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <h1>Mensajeria</h1>
+  <br>
+  <br>
+  <form action="{% url 'mensajes:registro_conversacion' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      
+      <label for="destinatario">Para :</label>
+        <input 
+          type="text"
+          name="destinatario"
+          id="destinatario"
+          value=""
+          placeholder="@ejemplo"
+        >
+      <br>
+      <br>
+      <label for="mensaje">Su mensaje:</label>
+        <input 
+          type="text"
+          name="mensaje"
+          id="mensaje"
+          value=""
+          placeholder=""
+        >
+      <br>
+      <br>
+      
+    </fieldset>
+    <input type="submit" value="ENVIAR">
+    
+  </form>
+</div>
+
+{% endblock %}

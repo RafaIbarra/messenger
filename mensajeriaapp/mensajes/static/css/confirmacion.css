@@ -1,0 +1,42 @@
+.contenedorautenticacion{
+    /* display: grid; */
+    /* grid-template-rows: 100px 100px 100px; */
+
+    padding-top: 50px;
+    border: 1px solid  var(--col);
+    width: 30%;
+    margin-left: 25%;
+    margin-top: 5%;
+    border-radius: 30px;
+    
+    
+}
+
+.titulo{
+    
+    width: 100%;
+    margin: 0 auto;
+    /* height:fit-content; */
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.parrafotitulo{
+    font-size: large;
+    font-weight:bold;
+    font-style:inherit;
+}
+
+.botonprocesar{
+    margin-left: 30%;
+    padding-top: 25px;
+    
+}
+
+.cuadrotexto{
+    width: 50%;
+    margin-left: 25%;
+    
+    
+}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="d-flex justify-content-center align-items-center">
+    <form action="{% url 'mensajes:signin' %}" method="post">
+        {% csrf_token %}
+            <div
+            class="bg-white p-5 rounded-5 text-secondary shadow"
+            style="width: 25rem"
+            >
+            <div class="d-flex justify-content-center">
+            <img
+                
+                src= "{{ DIR_HOST_S }}/mensajes/media/sistema/login-icon.svg"
+                alt="login-icon"
+                style="height: 7rem"
+            />
+            
+            </div>
+            <div class="text-center fs-1 fw-bold">Login</div>
+            <div class="input-group mt-4">
+            <div class="input-group-text bg-info">
+                <img
+                src="{{ DIR_HOST_S }}/mensajes/media/sistema/username-icon.svg"
+                alt="username-icon"
+                style="height: 1rem"
+                />
+            </div>
+            <input
+                class="form-control bg-light"
+                type="text"
+                placeholder="Username o Email"
+                name="user"
+                id="user"
+            />
+            </div>
+            <div class="input-group mt-1">
+                <div class="input-group-text bg-info">
+                    <img
+                    src="{{ DIR_HOST_S }}/mensajes/media/sistema/password-icon.svg"
+                    alt="password-icon"
+                    style="height: 1rem"
+                    />
+                </div>
+                <input
+                    class="form-control bg-light"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    id="password"
+                />
+           
+            </div>
+            {% if error %}  
+                <p class="text-decoration-none text-danger fw-semibold fst-italic" style="font-size: 0.9rem; padding: 5px;">
+                        **Error de usuario o contraseña</p>
+            {% endif %}
+            <div class="d-flex justify-content-around mt-1">
+            <div class="d-flex align-items-center gap-1">
+                <input class="form-check-input" type="checkbox" />
+                <div class="pt-1" style="font-size: 0.9rem">Recordarme</div>
+            </div>
+            <div class="pt-1">
+                <a
+                href="#"
+                class="text-decoration-none text-info fw-semibold fst-italic"
+                style="font-size: 0.9rem"
+                >Olvidaste tu contraseña?</a
+                >
+            </div>
+            </div>
+
+            
+
+            <div class="pt-3">
+                <button id ="botton" class="btn btn-info text-white w-100 mt-0 fw-semibold shadow-sm">
+                    <span>Login </span><i id="icono" class="bi bi-cursor-fill "></i>
+                    
+                </button>
+            </div> 
+
+            <div class="d-flex gap-1 justify-content-center mt-1">
+            <div>Aún no posees una cuenta?</div>
+            
+            <a 
+            href="{% url 'mensajes:registro_usuario' %}"  
+            class="text-decoration-none text-info fw-semibold"
+                >Registrate</a
+            >
+            </div>
+
+
+            
+            
+            </div>
+            </div>
+    </form>
+</section>
+{% endblock %}

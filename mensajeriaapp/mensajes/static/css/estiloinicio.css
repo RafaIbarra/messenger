@@ -1,0 +1,66 @@
+.datospersonales{
+    padding: 0px;
+    margin: 0%;
+    height: 243px;
+}
+.cuadrodatos{
+    width: 400px;
+    
+}
+.textotitulo{
+    padding-top: 7px;
+    padding-right: 100px;
+}
+.sexo{
+    margin-top: 6%;
+    
+}
+
+.contenedor{
+    display: inline-block;
+    padding:5px;
+    box-sizing: border-box;
+    width:150px;
+    height:150px;
+    margin-left: 30%;
+    
+    
+  }
+  img{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    border-radius: 20px;
+  }
+  .contenedorsvg{
+    
+    padding-bottom: 10px;
+    
+    
+  }
+  .contenedorsvg svg{
+    width: 60px;
+    height: 30px;
+    color: whitesmoke;
+    background-color: rgb(13, 202, 240);
+    border-radius: 10px;
+  }
+  .contenedorsvg svg:hover {
+    opacity: 50%;
+    transition: 50ms;
+    width: 62px;
+    height: 32px;
+  }
+
+  .contenedorcompartido{
+    display: inline-block;
+    padding:20px;
+    box-sizing: border-box;
+    width:150px;
+    height:150px;
+    margin-left: 10%;
+    
+    
+  }
+
+  

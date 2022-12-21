@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <h1>Mensajeria</h1>
+  <br>
+  <br>
+  <form action="{% url 'mensajes:registro_usuario' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend><h2>Registro de Usuario</h2></legend>
+      <label for="nombre"> Nombres: </label>
+        <input 
+          type="text"
+          name="nombre"
+          id="nombre"
+          value=""
+          placeholder="Ingrese su nombre"
+        >
+      <br>
+      <br>
+      <label for="apellido">Apellidos:</label>
+        <input 
+          type="text"
+          name="apellido"
+          id="apellido"
+          value=""
+          placeholder="Ingrese su apellido"
+        >
+      <br>
+      <br>
+      <label for="user">User Name:</label>
+        <input 
+          type="text"
+          name="user"
+          id="user"
+          value=""
+          placeholder="@ejemplo"
+        >
+      <br>
+      <br>
+      <label for="correo">Correo electronico:</label>
+        <input 
+          type="email"
+          name="correo"
+          id="correo"
+          value=""
+          placeholder="ejemplo@ejemplo.com"
+        >
+      <br>
+      <br>
+      <label for="nacimiento">Fecha Nacimiento:</label>
+        <input 
+          type="date"
+          name="nacimiento"
+          id="nacimiento"
+          value=""
+          placeholder=""
+        >
+      <br>
+      <br>
+      <label for="contrasena1">Ingrese Contraseña:</label>
+        <input 
+          type="password"
+          name="contrasena1"
+          id="contrasena1"
+          value=""
+          placeholder=""
+        >
+      <br>
+      <br>
+      <label for="contrasena2">Repita Contraseña:</label>
+        <input 
+          type="password"
+          name="contrasena2"
+          id="contrasena2"
+          value=""
+          placeholder=""
+        >
+    </fieldset>
+    <input type="submit" value="REGISTRARSE">
+    
+  </form>
+</div>
+
+{% endblock %}

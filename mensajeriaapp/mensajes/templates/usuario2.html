@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    
+    {% csrf_token %}
+    
+      <fieldset>
+        <legend> <h1>{{ usuarios.user_name }}</h1></legend>
+            <!--<div>
+                {% include 'conversaciones.html' %}
+                
+            </div>-->
+            
+            {% comment %} <div align="left" id="elemento">
+                  <br>
+                  <br>
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                      MIS MENSAJES
+                    </div>
+                    <ul class="list-group list-group-flush" id="tarjeta">
+                      
+                    </ul>
+                  </div> {% endcomment %}
+            
+        </fieldset>
+      
+    
+    <div class="contenedor">
+        <div id="conversaciones" class="conversaciones"></div>
+        <div id="Chat"  class="Chat"> </div>
+        <div id="Chatcabecera" > </div>
+    </div>
+    <div class="contenedor">
+      <div id="enviomensaje"> 
+        <textarea class="form-control" id="chat-text" rows="2" style= "width: 700px";></textarea>
+        <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send">
+      </div>
+    </div>
+
+    <form action="{% url 'mensajes:registro_conversacion' %}" method=""> 
+      <input type="submit" value="Nuevo Mensaje" >
+    </form>
+    
+    
+    
+    
+{% endblock %}
