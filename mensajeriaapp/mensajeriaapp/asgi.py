@@ -15,7 +15,7 @@ from channels.auth import AuthMiddlewareStack
 from channels.security.websocket import AllowedHostsOriginValidator
 from django.urls import path
 from mensajes.consumers import ChatRoomConsumer
-from django.urls import re_path
+
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mensajeriaapp.settings')
@@ -29,11 +29,10 @@ application=ProtocolTypeRouter({
     "websocket": AllowedHostsOriginValidator(
         AuthMiddlewareStack(
             URLRouter([
-                #path(r'ws/chat/(?P<room_name>\w+)/$', ChatRoomConsumer.as_asgi()),
-                #path("ws/chat/room/", ChatRoomConsumer.as_asgi()),
+                
                 path("ws/mensajes/usuario/<str:logeado>/", ChatRoomConsumer.as_asgi()),
                 
-                #re_path(r'ws/mensajes/usuario/(?P<logeado>\w+)/$', ChatRoomConsumer),
+                
 
                 
             ])
