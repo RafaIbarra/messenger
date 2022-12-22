@@ -1,0 +1,2 @@
+daphne -p 8001 mensajeriaapp.asgi:application
+daphne mensajeriaapp.asgi:application

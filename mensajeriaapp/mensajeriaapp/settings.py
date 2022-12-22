@@ -168,7 +168,7 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` director
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mensajes/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/mensajes/media/')
 
 ASGI_APPLICATION = "mensajeriaapp.asgi.application"
 CHANNEL_LAYERS = {
